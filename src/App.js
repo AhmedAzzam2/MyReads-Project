@@ -1,9 +1,13 @@
 import "./App.css";
 import { useState } from "react";
+import { getAll, get, update } from "./BooksAPI";
+import Card from "./Card";
 
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
-
+  const [all, setAll] = useState([]);
+  getAll().then((data) => setAll(data));
+  
   return (
     <div className="app">
       {showSearchPage ? (
@@ -37,6 +41,18 @@ function App() {
                 <h2 className="bookshelf-title">Currently Reading</h2>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
+                      {all
+                        .map((book) => (
+                          <Card
+                            key={book.id}
+                            title={book.title}
+                            author={book.authors}
+                            imageLinks={book.imageLinks.smallThumbnail}
+                            shelf={book.shelf}
+                            id={book.id}
+                            update={update}
+                          />
+                        ))}
                     <li>
                       <div className="book">
                         <div className="book-top">

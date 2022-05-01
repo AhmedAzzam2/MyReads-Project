@@ -11,8 +11,7 @@ function Card(props) {
                         style={{
                             width: 128,
                             height: 193,
-                            backgroundImage:
-                                'url("{ props.imageLinks }")',
+                            backgroundImage: `url(${props.imageLinks})`,
                         }}
                     ></div>
                     <div className="book-shelf-changer">

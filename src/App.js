@@ -43,11 +43,12 @@ function App() {
                   <ol className="books-grid">
                       {all
                         .map((book) => (
+                          console.log(book),
                           <Card
                             key={book.id}
                             title={book.title}
                             author={book.authors}
-                            imageLinks={book.imageLinks.smallThumbnail}
+                            imageLinks={book.imageLinks.thumbnail}
                             shelf={book.shelf}
                             id={book.id}
                             update={update}

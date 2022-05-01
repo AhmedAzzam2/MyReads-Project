@@ -1,10 +1,11 @@
 import react from "react";
+import { Link } from "react-router-dom";
 
 function Card(props) {
     return (
 
         <li key={ props.key } >
-            <div className="book">
+            <Link to={'/single/'+props.id} className="book">
                 <div className="book-top">
                     <div
                         className="book-cover"
@@ -30,7 +31,7 @@ function Card(props) {
                 </div>
                 <div className="book-title">{props.title}</div>
                 <div className="book-authors">{props.author}</div>
-            </div>
+            </Link>
         </li>
     )
 }

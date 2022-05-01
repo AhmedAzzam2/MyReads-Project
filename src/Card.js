@@ -1,5 +1,8 @@
 import react from "react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 
 function Card(props) {
     return (

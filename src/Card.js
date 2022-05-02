@@ -7,7 +7,7 @@ import { handleChange } from "./App";
 function Card(props) {
     return (
 
-        <li key={ props.key } >
+        <li key={ props.id } >
                 <div className="book-top">
                     <div
                         className="book-cover"

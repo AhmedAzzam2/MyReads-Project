@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import { get } from "./BooksAPI";
 import Card from "./Card";
@@ -18,7 +18,7 @@ function App() {
 
   console.log(typeof book);
   // how to access the book item object in the console?
-  
+
 
   return (
     <div className="app">
@@ -45,12 +45,18 @@ function App() {
       ) : (
         <div className="list-books">
           <div className="list-books-title">
-            <h1>MyReads</h1>
+            
+                   < Link to="/"><h1>MyReads</h1></Link>
+                   < Link to="/">back to home MyReads</Link>
           </div>
           <div className="list-books-content">
             <div>
               <div className="bookshelf">
-                <h2 className="bookshelf-title">Currently Reading</h2>
+                <h2 className="bookshelf-title">
+                  
+            { book && (   book.title ) }
+            
+                </h2>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
                     {/* show book info id */}
@@ -66,7 +72,8 @@ function App() {
                         />
                       )}
                     </div>
-                    
+            { book && (   book.description ) }
+
                   </ol>
                 </div>
               </div>

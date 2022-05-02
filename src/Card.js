@@ -2,13 +2,12 @@ import react from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
+import { handleChange } from "./App";
 
 function Card(props) {
     return (
 
         <li key={ props.key } >
-            <Link to={'/single/'+props.id} className="book">
                 <div className="book-top">
                     <div
                         className="book-cover"
@@ -19,7 +18,7 @@ function Card(props) {
                         }}
                     ></div>
                     <div className="book-shelf-changer">
-                        <select>
+                        <select onChange={ handleChange } id={ props.id } >
                             <option value="none" disabled>
                                 Move to...
                             </option>
@@ -32,6 +31,7 @@ function Card(props) {
                         </select>
                     </div>
                 </div>
+            <Link to={'/single/'+props.id} className="book">
                 <div className="book-title">{props.title}</div>
                 <div className="book-authors">{props.author}</div>
             </Link>

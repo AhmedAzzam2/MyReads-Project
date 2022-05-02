@@ -1,17 +1,32 @@
 import "./App.css";
-import { useState } from "react";
-import { getAll, get, update } from "./BooksAPI";
+import { useState, useEffect } from "react";
+import { getAll, get, update,select } from "./BooksAPI";
 import Card from "./Card";
-import { useEffect } from "react/cjs/react.production.min";
+// import { useEffect } from "react/cjs/react.production.min";
+
+// create a function to update the book shelf when changed option is selected 
+
+export function handleChange(event) {
+  const id = event.target.id;
+  const shelf = event.target.value;
+  update(id, shelf);
+}
+
 
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
   const [all, setAll] = useState([]);
-  getAll().then((data) => setAll(data));
-  update("74XNzF_al3MC", "read").then((data) => setAll(data));
-  
-  
-  console.log(all);
+
+  useEffect(() => {
+    getAll().then((data) => setAll(data));
+  }, []);
+
+function handleSearch(event) {
+  event.preventDefault();
+  console.log(event.target.value);
+}
+
+
   return (
     <div className="app">
       {showSearchPage ? (
@@ -25,13 +40,18 @@ function App() {
             </a>
             <div className="search-books-input-wrapper">
               <input
+              onClick={handleSearch}
                 type="text"
                 placeholder="Search by title, author, or ISBN"
               />
             </div>
           </div>
           <div className="search-books-results">
-            <ol className="books-grid"></ol>
+            <ol className="books-grid">
+              {
+
+              }
+            </ol>
           </div>
         </div>
       ) : (
@@ -45,19 +65,19 @@ function App() {
                 <h2 className="bookshelf-title">Currently Reading</h2>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
-                      {all
-                        .filter((book) => book.shelf === "currentlyReading")
-                        .map((book) => (
-                          <Card
-                            key={book.id}
-                            id={book.id}
-                            title={book.title}
-                            author={book.authors}
-                            imageLinks={book.imageLinks.smallThumbnail}
-                            shelf={book.shelf}
-                            update={update}
-                          />
-                        ))}
+                    {all
+                      .filter((book) => book.shelf === "currentlyReading")
+                      .map((book) => (
+                        <Card
+                          key={book.id}
+                          id={book.id}
+                          title={book.title}
+                          author={book.authors}
+                          imageLinks={book.imageLinks.smallThumbnail}
+                          shelf={book.shelf}
+                          update={update}
+                        />
+                      ))}
                     <li>
                       <div className="book">
                         <div className="book-top">
@@ -137,7 +157,7 @@ function App() {
                           shelf={book.shelf}
                           update={update}
                         />
-                      ))} 
+                      ))}
                   </ol>
                 </div>
               </div>
@@ -157,7 +177,7 @@ function App() {
                           shelf={book.shelf}
                           update={update}
                         />
-                      ))} 
+                      ))}
                   </ol>
                 </div>
               </div>

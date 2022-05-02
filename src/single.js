@@ -53,7 +53,7 @@ function App() {
             <div>
               <div className="bookshelf">
                 <h2 className="bookshelf-title">
-                  
+                    <Link to={'/'} className="close-search"> </Link>
             { book && (   book.title ) }
             
                 </h2>

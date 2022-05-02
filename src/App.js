@@ -28,7 +28,7 @@ function App() {
     console.log(event.target.value);
     search(event.target.value, 10).then((data) => setsearchf(data));
   }
-  console.log(all);
+  console.log(searchF);
 
   return (
     <div className="app">
@@ -58,7 +58,7 @@ function App() {
                     id={book.id}
                     title={book.title}
                     author={book.authors}
-                    imageLinks={book.imageLinks.smallThumbnail }
+                    imageLinks={book.imageLinks.smallThumbnail}
                     shelf={book.shelf}
                   />
                 ))}

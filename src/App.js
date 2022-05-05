@@ -7,9 +7,12 @@ import Card from "./Card";
 // create a function to update the book shelf when changed option is selected 
 
 export function handleChange(event) {
-  const id = event.target.id;
-  const shelf = event.target.value;
-  update(id, shelf).then((data) => {
+  event.persist()
+  const [query, setQuery] = useState(
+    {id: event.target.id, shelf: event.target.value}
+  );
+  
+  update(query.id, query.shelf).then(( data ) => {
     console.log(data);
   });  // update the book shelf
 }

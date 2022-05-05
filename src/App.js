@@ -8,8 +8,9 @@ import Card from "./Card";
 
 export function handleChange(event) {
   const id = event.target.id;
+  const book = {id:event.target.id, shelf:event.target.value};
   const shelf = event.target.value;
-  update(id, shelf).then((data) => {
+  update(book, shelf).then((data) => {
     console.log(data);
   });  // update the book shelf
 }

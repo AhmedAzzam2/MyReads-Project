@@ -7,12 +7,9 @@ import Card from "./Card";
 // create a function to update the book shelf when changed option is selected 
 
 export function handleChange(event) {
-  event.persist()
-  const [query, setQuery] = useState(
-    {id: event.target.id, shelf: event.target.value}
-  );
-  
-  update(query.id, query.shelf).then(( data ) => {
+  const id = event.target.id;
+  const shelf = event.target.value;
+  update(id, shelf).then((data) => {
     console.log(data);
   });  // update the book shelf
 }
@@ -20,6 +17,7 @@ export function handleChange(event) {
 
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
+  const [query, setQuery] = useState("");
   const [searchF, setsearchf] = useState([]);
   const [all, setAll] = useState([]);
 
@@ -27,8 +25,8 @@ function App() {
     getAll().then((data) => setAll(data));
   }, []);
 
-  function handleSearch(event) {
-    console.log(event.target.value);
+  function handleSearch(event) { 
+    setQuery({ search:event.target.value});
     search(event.target.value, 10).then((data) => setsearchf(data));
   }
   console.log(searchF);

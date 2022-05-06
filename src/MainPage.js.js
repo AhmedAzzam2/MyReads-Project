@@ -35,7 +35,12 @@ function App() {
      
       // firter by id
       const newAll = all.filter((book) => book.id !== id);
-      console.log(newAll);
+      // add the new book
+      get(id).then((data) => {
+        newAll.push(data);
+        setAll(newAll);
+      });
+      
       
       
     });  // update the book shelf
@@ -147,7 +152,8 @@ function App() {
             </div>
           </div>
           <div className="open-search">
-            <Link to="/search"> Add a book </Link>
+            <a onClick={() => setShowSearchpage(!showSearchPage)}> Add a book</a>
+            {/* <Link to="/search"> Add a book </Link> */}
           </div>
         </div>
       )}

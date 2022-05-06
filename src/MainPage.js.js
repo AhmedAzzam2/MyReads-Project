@@ -41,8 +41,6 @@ function App() {
         setAll(newAll);
       });
       
-      
-      
     });  // update the book shelf
   }
 
@@ -74,7 +72,7 @@ function App() {
                     id={book.id}
                     title={book.title}
                     author={book.authors}
-                    imageLinks={book.imageLinks.smallThumbnail}
+                    imageLinks={book.imageLinks.smallThumbnail || book.imageLinks.thumbnail || book.imageLinks.small}
                     shelf={book.shelf}
                     handleChange={handleChange}
                   />
@@ -101,7 +99,7 @@ function App() {
                           id={book.id}
                           title={book.title}
                           author={book.authors}
-                          imageLinks={book.imageLinks.smallThumbnail}
+                          imageLinks={book.imageLinks.smallThumbnail || book.imageLinks.thumbnail || book.imageLinks.small}
                           shelf={book.shelf}
                           handleChange={handleChange}
                         />
@@ -121,7 +119,7 @@ function App() {
                           id={book.id}
                           title={book.title}
                           author={book.authors}
-                          imageLinks={book.imageLinks.smallThumbnail}
+                          imageLinks={book.imageLinks.smallThumbnail || book.imageLinks.thumbnail || book.imageLinks.small}
                           shelf={book.shelf}
                           handleChange={handleChange}
                         />
@@ -141,7 +139,7 @@ function App() {
                           id={book.id}
                           title={book.title}
                           author={book.authors}
-                          imageLinks={book.imageLinks.smallThumbnail}
+                          imageLinks={book.imageLinks.smallThumbnail || book.imageLinks.thumbnail || book.imageLinks.small}
                           shelf={book.shelf}
                           handleChange={handleChange}
                         />

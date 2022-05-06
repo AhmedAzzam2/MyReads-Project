@@ -32,18 +32,12 @@ function App() {
     console.log(book);
     update(book, shelf).then((data) => {
       console.log(data.read, data);
-      // get data read and currentlyReading and wantread
-      let d = [...data.read, ...data.currentlyReading, ...data.wantToRead];
-      let list = []
-      d.map((book) => {
-        get(book).then((data) => {
-          console.log(data);
-          list.push(data);
-          setAll(list);
-        });
-      });
+     
+      // firter by id
+      const newAll = all.filter((book) => book.id !== id);
+      console.log(newAll);
       
-      console.log(list,'kkkkkkkkkkkkkkkkkkkkkk');
+      
     });  // update the book shelf
   }
 

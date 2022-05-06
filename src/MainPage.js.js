@@ -21,7 +21,11 @@ function App() {
 
   function handleSearch(event) {
     setQuery({ search: event.target.value });
-    search(event.target.value, 10).then((data) => setsearchf(data));
+    if (event.target.value.length === 1) {
+      search(event.target.value).then((data) => setsearchf(data));
+    } else {
+      setsearchf([]);
+    }
   }
   console.log(searchF);
 
@@ -40,6 +44,7 @@ function App() {
         newAll.push(data);
         setAll(newAll);
       });
+       
       
     });  // update the book shelf
   }
@@ -72,7 +77,9 @@ function App() {
                     id={book.id}
                     title={book.title}
                     author={book.authors}
-                    imageLinks={book.imageLinks.smallThumbnail || book.imageLinks.thumbnail || book.imageLinks.small}
+                    imageLinks={book.imageLinks ? book.imageLinks.thumbnail : 'http://books.google.com/books/content?id=eJa41LzeWWkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'}
+                    // if imageLinks is not available, use the thumbnail
+                    
                     shelf={book.shelf}
                     handleChange={handleChange}
                   />
@@ -99,7 +106,7 @@ function App() {
                           id={book.id}
                           title={book.title}
                           author={book.authors}
-                          imageLinks={book.imageLinks.smallThumbnail || book.imageLinks.thumbnail || book.imageLinks.small}
+                          imageLinks={book.imageLinks ? book.imageLinks.thumbnail : 'http://books.google.com/books/content?id=eJa41LzeWWkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'}
                           shelf={book.shelf}
                           handleChange={handleChange}
                         />
@@ -119,7 +126,7 @@ function App() {
                           id={book.id}
                           title={book.title}
                           author={book.authors}
-                          imageLinks={book.imageLinks.smallThumbnail || book.imageLinks.thumbnail || book.imageLinks.small}
+                          imageLinks={book.imageLinks ? book.imageLinks.thumbnail : 'http://books.google.com/books/content?id=eJa41LzeWWkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'}
                           shelf={book.shelf}
                           handleChange={handleChange}
                         />
@@ -139,7 +146,7 @@ function App() {
                           id={book.id}
                           title={book.title}
                           author={book.authors}
-                          imageLinks={book.imageLinks.smallThumbnail || book.imageLinks.thumbnail || book.imageLinks.small}
+                          imageLinks={book.imageLinks ? book.imageLinks.thumbnail : 'http://books.google.com/books/content?id=eJa41LzeWWkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'}
                           shelf={book.shelf}
                           handleChange={handleChange}
                         />
@@ -150,8 +157,8 @@ function App() {
             </div>
           </div>
           <div className="open-search">
-            <a onClick={() => setShowSearchpage(!showSearchPage)}> Add a book</a>
-            {/* <Link to="/search"> Add a book </Link> */}
+            
+            <a onClick={() => setShowSearchpage(!showSearchPage)}> Search </a>
           </div>
         </div>
       )}

@@ -65,7 +65,7 @@ function App() {
                         <Card
                           key={book.id}
                           id={book.id}
-                          imageLinks={book.imageLinks.smallThumbnail}
+                          imageLinks={book.imageLinks ? book.imageLinks.thumbnail : 'http://books.google.com/books/content?id=eJa41LzeWWkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'}
                           title={book.title}
                           authors={book.authors}
                           shelf={book.shelf}

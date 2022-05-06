@@ -19,7 +19,9 @@ function Card(props) {
                     ></div>
                     <div className="book-shelf-changer">
                         <select onChange={ props.handleChange } id={props.id} >
-                            <option value="none">None</option>
+                            <option value="none" disabled>
+                                Move to...
+                            </option>
                             <option value="currentlyReading">
                                 Currently Reading
                             </option>

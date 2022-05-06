@@ -5,6 +5,7 @@ import {  BrowserRouter, Routes, Route, } from "react-router-dom";
 
 import "./index.css";
 import App from "./App";
+import  SearchPage  from "./SearchPage";
 import Single from "./single";
 
 ReactDOM.render(
@@ -13,6 +14,7 @@ ReactDOM.render(
 <BrowserRouter>
 <Routes>
   <Route path="/" element={<App />} />
+  <Route path="/search" element={<SearchPage />} />
     <Route path="single/:id" element={<Single />} />
 </Routes>
 </BrowserRouter>,

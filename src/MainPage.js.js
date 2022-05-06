@@ -1,4 +1,5 @@
 import "./App.css";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getAll, get, update, search } from "./BooksAPI";
 import Card from "./Card";
@@ -6,14 +7,6 @@ import Card from "./Card";
 
 // create a function to update the book shelf when changed option is selected 
 
-export function handleChange(event) {
-  const id = event.target.id;
-  const book = {id:event.target.id, shelf:event.target.value};
-  const shelf = event.target.value;
-  update(book, shelf).then((data) => {
-    console.log(data);
-  });  // update the book shelf
-}
 
 
 function App() {
@@ -26,11 +19,33 @@ function App() {
     getAll().then((data) => setAll(data));
   }, []);
 
-  function handleSearch(event) { 
-    setQuery({ search:event.target.value});
+  function handleSearch(event) {
+    setQuery({ search: event.target.value });
     search(event.target.value, 10).then((data) => setsearchf(data));
   }
   console.log(searchF);
+
+  function handleChange(event) {
+    const id = event.target.id;
+    const book = { id: event.target.id, shelf: event.target.value };
+    const shelf = event.target.value;
+    console.log(book);
+    update(book, shelf).then((data) => {
+      console.log(data.read, data);
+      // get data read and currentlyReading and wantread
+      let d = [...data.read, ...data.currentlyReading, ...data.wantToRead];
+      let list = []
+      d.map((book) => {
+        get(book).then((data) => {
+          console.log(data);
+          list.push(data);
+          setAll(list);
+        });
+      });
+      
+      console.log(list,'kkkkkkkkkkkkkkkkkkkkkk');
+    });  // update the book shelf
+  }
 
   return (
     <div className="app">
@@ -62,6 +77,7 @@ function App() {
                     author={book.authors}
                     imageLinks={book.imageLinks.smallThumbnail}
                     shelf={book.shelf}
+                    handleChange={handleChange}
                   />
                 ))}
             </ol>
@@ -88,6 +104,7 @@ function App() {
                           author={book.authors}
                           imageLinks={book.imageLinks.smallThumbnail}
                           shelf={book.shelf}
+                          handleChange={handleChange}
                         />
                       ))}
                   </ol>
@@ -107,6 +124,7 @@ function App() {
                           author={book.authors}
                           imageLinks={book.imageLinks.smallThumbnail}
                           shelf={book.shelf}
+                          handleChange={handleChange}
                         />
                       ))}
                   </ol>
@@ -126,6 +144,7 @@ function App() {
                           author={book.authors}
                           imageLinks={book.imageLinks.smallThumbnail}
                           shelf={book.shelf}
+                          handleChange={handleChange}
                         />
                       ))}
                   </ol>
@@ -134,7 +153,7 @@ function App() {
             </div>
           </div>
           <div className="open-search">
-            <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a>
+            <Link to="/search"> Add a book </Link>
           </div>
         </div>
       )}

@@ -145,8 +145,9 @@ function App() {
                           title={book.title}
                           author={book.authors}
                           imageLinks={book.imageLinks ? book.imageLinks.thumbnail : 'http://books.google.com/books/content?id=eJa41LzeWWkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'}
-                          shelf={book.shelf}
-                          handleChange={handleChange}
+                         handleChange={handleChange}
+                         shelf={book.shelf}
+                          
                         />
                       ))}
                   </ol>

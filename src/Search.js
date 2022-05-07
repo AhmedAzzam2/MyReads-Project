@@ -6,6 +6,8 @@ import Card from "./Card";
 
 
 
+
+
 function Search() {
   const [showSearchPage, setShowSearchpage] = useState(true);
   const [query, setQuery] = useState("");

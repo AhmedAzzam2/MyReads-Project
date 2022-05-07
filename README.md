@@ -25,5 +25,6 @@ The project can be viewed in the browser at
 http://localhost:3000
 
 
-<img src="Screenshots%5CScreenshot%202022-05-07%20085824.jpg" alt="Wowchemy Website Builder"  style="max-width: 100%;"> 
+<img src="https://raw.githubusercontent.com/AhmedAzzam2/MyReads-Project/main/Screenshots/Screenshot%202022-05-07%20085824.jpg" alt="Wowchemy Website Builder"  style="max-width: 100%;"> 
+<img src="https://raw.githubusercontent.com/AhmedAzzam2/MyReads-Project/main/Screenshots/Screenshot%202022-05-07%20090946.jpg" alt="Wowchemy Website Builder"  style="max-width: 100%;"> 
  myreads starter code on Github [rubric](https://github.com/udacity/nd0191-c1-myreads/).

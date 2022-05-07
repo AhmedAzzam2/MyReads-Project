@@ -1,16 +1,14 @@
 # MyReads Project
-MyReads is a simple cataloging app that allows you to place books in one of three shelves or categories.
-
+MyReads is a basic recording application that permits you to put books in one of three racks or classifications.
 - Currently Reading
 - Want to Read
 - Read
-It also allow you to search for books based on title and author.
+It additionally permit you to look for books in view of title and author.
 
-This app is the first of three projects required for Udacity's React Nanodegree program.
- 
-Installation
-Clone the repository, change directories, and use NPM to install the dependencies.
+This application is the first of three tasks expected for Udacity's React Nanodegree program.
 
+Establishment
+Clone the vault, change catalogs, and use NPM to introduce the conditions.
 ```
 $ git clone https://github.com/AhmedAzzam2/MyReads-Project.git
 $ cd MyReads-Project
@@ -24,6 +22,7 @@ The project can be viewed in the browser at
 
 http://localhost:3000
 
+## screansots
 
 <img src="https://raw.githubusercontent.com/AhmedAzzam2/MyReads-Project/main/Screenshots/Screenshot%202022-05-07%20085824.jpg" alt="Wowchemy Website Builder"  style="max-width: 100%;"> 
 <img src="https://raw.githubusercontent.com/AhmedAzzam2/MyReads-Project/main/Screenshots/Screenshot%202022-05-07%20090946.jpg" alt="Wowchemy Website Builder"  style="max-width: 100%;"> 

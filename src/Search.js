@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getAll, get, update, search } from "./BooksAPI";
 import Card from "./Card";
-// import { useEffect } from "react/cjs/react.production.min";
-
-// create a function to update the book shelf when changed option is selected 
 
 
 
@@ -25,7 +22,7 @@ function Search() {
       search(event.target.value).then((data) => setsearchf(data));
     } 
   }
-  console.log(searchF);
+  
 
   function handleChange(event) {
     const id = event.target.id;
@@ -47,9 +44,9 @@ function Search() {
     });  // update the book shelf
   }
 
+
   return (
     <div className="app">
-      {showSearchPage ? (
         <div className="search-books">
           <div className="search-books-bar">
             {/* <a
@@ -87,81 +84,6 @@ function Search() {
             </ol>
           </div>
         </div>
-      ) : (
-        <div className="list-books">
-          <div className="list-books-title">
-            <h1>MyReads</h1>
-          </div>
-          <div className="list-books-content">
-            <div>
-              <div className="bookshelf">
-                <h2 className="bookshelf-title">Currently Reading</h2>
-                <div className="bookshelf-books">
-                  <ol className="books-grid">
-                    {all
-                      .filter((book) => book.shelf === "currentlyReading")
-                      .map((book) => (
-                        <Card
-                          key={book.id}
-                          id={book.id}
-                          title={book.title}
-                          author={book.authors}
-                          imageLinks={book.imageLinks ? book.imageLinks.thumbnail : 'http://books.google.com/books/content?id=eJa41LzeWWkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'}
-                          shelf={book.shelf}
-                          handleChange={handleChange}
-                        />
-                      ))}
-                  </ol>
-                </div>
-              </div>
-              <div className="bookshelf">
-                <h2 className="bookshelf-title">Want to Read</h2>
-                <div className="bookshelf-books">
-                  <ol className="books-grid">
-                    {all
-                      .filter((book) => book.shelf === "wantToRead")
-                      .map((book) => (
-                        <Card
-                          key={book.id}
-                          id={book.id}
-                          title={book.title}
-                          author={book.authors}
-                          imageLinks={book.imageLinks ? book.imageLinks.thumbnail : 'http://books.google.com/books/content?id=eJa41LzeWWkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'}
-                          shelf={book.shelf}
-                          handleChange={handleChange}
-                        />
-                      ))}
-                  </ol>
-                </div>
-              </div>
-              <div className="bookshelf">
-                <h2 className="bookshelf-title">Read</h2>
-                <div className="bookshelf-books">
-                  <ol className="books-grid">
-                    {all
-                      .filter((book) => book.shelf === "read")
-                      .map((book) => (
-                        <Card
-                          key={book.id}
-                          id={book.id}
-                          title={book.title}
-                          author={book.authors}
-                          imageLinks={book.imageLinks ? book.imageLinks.thumbnail : 'http://books.google.com/books/content?id=eJa41LzeWWkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'}
-                          shelf={book.shelf}
-                          handleChange={handleChange}
-                        />
-                      ))}
-                  </ol>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="open-search">
-            
-            <a onClick={() => setShowSearchpage(!showSearchPage)}> Search </a>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

@@ -9,8 +9,8 @@ import Card from "./Card";
 
 
 
-function App() {
-  const [showSearchPage, setShowSearchpage] = useState(false);
+function Search() {
+  const [showSearchPage, setShowSearchpage] = useState(true);
   const [query, setQuery] = useState("");
   const [searchF, setsearchf] = useState([]);
   const [all, setAll] = useState([]);
@@ -52,12 +52,13 @@ function App() {
       {showSearchPage ? (
         <div className="search-books">
           <div className="search-books-bar">
-            <a
+            {/* <a
               className="close-search"
               onClick={() => setShowSearchpage(!showSearchPage)}
             >
               Close
-            </a>
+            </a> */}
+            <Link to="/" className="close-search"> Home </Link>
             <div className="search-books-input-wrapper">
               <input
                 onChange={handleSearch}
@@ -79,6 +80,7 @@ function App() {
                     // if imageLinks is not available, use the thumbnail
                     
                     shelf={book.shelf}
+                    search={true}
                     handleChange={handleChange}
                   />
                 ))}
@@ -155,7 +157,8 @@ function App() {
             </div>
           </div>
           <div className="open-search">
-            <Link to="/search">Add a book</Link>
+            
+            <a onClick={() => setShowSearchpage(!showSearchPage)}> Search </a>
           </div>
         </div>
       )}
@@ -163,4 +166,4 @@ function App() {
   );
 }
 
-export default App;
+export default Search;

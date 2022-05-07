@@ -23,9 +23,7 @@ function App() {
     setQuery({ search: event.target.value });
     if (event.target.value.length === 1) {
       search(event.target.value).then((data) => setsearchf(data));
-    } else {
-      setsearchf([]);
-    }
+    } 
   }
   console.log(searchF);
 

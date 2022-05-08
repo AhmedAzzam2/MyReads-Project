@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import PropTypes from "prop-types";
 
 Card.propTypes = {
     author: PropTypes.array.isRequired,
-    title: PropTypes.string.isRequired,
-    imageLinks: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
+    // title: PropTypes.string.isRequired,
+    // imageLinks: PropTypes.string.isRequired,
+    // id: PropTypes.string.isRequired,
+    // handleChange: PropTypes.func.isRequired,
 
 };
 
@@ -26,6 +27,8 @@ export const options = shelves.map(shelf => {
 );
 
 function Card(props) {
+    // usestate is a hook that allows us to use state in a functional component
+    const [self, setShelf] = useState(props.shelf);
 
     const { author, title, imageLinks, id, handleChange, shelf } = props;
 
@@ -44,7 +47,7 @@ function Card(props) {
                     }}
                 ></div>
                 <div className="book-shelf-changer">
-                    <select onChange={handleChange} id={id}  value={ shelf ? shelf: 'none' }>
+                    <select onChange={handleChange} id={id}  value={ self ? self: 'none' }>
                         <option value="" disabled>Move to... </option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>

@@ -1,9 +1,5 @@
 import react from "react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { handleChange } from "./App";
-import Select from 'react-select'
 import PropTypes from "prop-types";
 
 Card.propTypes = {
@@ -14,9 +10,28 @@ Card.propTypes = {
     handleChange: PropTypes.func.isRequired,
     search: PropTypes.bool.isRequired
 
-  };
+};
 function Card(props) {
-    const { author, title, imageLinks, id, handleChange, search ,shelf } = props;
+    const { author, title, imageLinks, id, handleChange, search, shelf } = props;
+
+
+    const shelves = [
+        { id: "currentlyReading", shelfName: "Currently Reading", shelfDisplayName: "Currently Reading" },
+        { id: "wantToRead", shelfName: "Want to Read", shelfDisplayName: "Want to Read" },
+        { id: "read", shelfName: "Read", shelfDisplayName: "Read" },
+        { id: "none", shelfName: "None", shelfDisplayName: "None" }
+    ];
+
+    // map over the shelves array and return the following:
+    // <option value={shelf.id}>{shelf.shelfDisplayName}</option> for each shelf in the array 
+    const options = shelves.map(shelf => {
+        return { value: shelf.id, label: shelf.shelfDisplayName };
+    }
+    );
+    // set the initial value of the select to the shelf that the book is currently on
+    console.log(options);
+
+
 
     return (
 
@@ -32,18 +47,16 @@ function Card(props) {
                 ></div>
                 <div className="book-shelf-changer">
                     <select onChange={handleChange} id={id}  >
-                        <option value="none" disabled>Move to...</option>
-                        { shelf === 'currentlyReading' ? <option value="currentlyReading" selected >Currently Reading</option> : <option value="currentlyReading">Currently Reading</option> }
-                        { shelf === 'wantToRead' ? <option value="wantToRead" selected >Want to Read</option> : <option value="wantToRead">Want to Read</option> }
-                        { shelf === 'read' ? <option value="read" selected >Read</option> : <option value="read">Read</option> }
-                        
-                        {
-                            search ?
-                                <option value="none" selected>None</option>
-                                :
-                                <option value="none">None</option>
+                        <option value="" disabled>Move to... </option>
 
-                        }
+                        {options.map(option => (
+                            (option.value === shelf || shelf == null && option.value == 'none') ?
+                                <option value={option.value} selected>{option.label}</option>
+                                :
+                                <option value={option.value}>{option.label}</option>
+
+                        ))}
+
                     </select>
                 </div>
             </div>

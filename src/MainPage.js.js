@@ -48,7 +48,7 @@ function App() {
           <div>
             {
               // shelves.map identifies the shelves and maps them to the cards
-              shelves.filter((shelf) => { return shelf.name !== "none"; }) // filter out the none shelf
+              shelves.filter((shelf) => { return shelf.shelfName != "None"; }) // filter out the none shelf
               .map((shelf) => {
                 return (
 

@@ -15,13 +15,13 @@ function Search() {
 
   useEffect(() => {
     getAll().then((data) => setAll(data));
-  }, []);
+    if (queryText != "" && queryText != null && queryText != undefined && queryText != "xxx" ) {
+      search(queryText).then((data) =>
+        (!data.error) ? setQuery(data) : setQuery([])
+      ); 
+    }
+  }, [ queryText, setQuery ]); // eslint-disable-line 
 
-  if (queryText != "") {
-    search(queryText).then((data) =>
-      (!data.error) ? setQuery(data) : setQuery([])
-    ); 
-  }
 
   
   function handleChange(event) {

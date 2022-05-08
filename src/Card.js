@@ -31,7 +31,7 @@ function Card(props) {
     const [self, setShelf] = useState(props.shelf);
 
     const { author, title, imageLinks, id, handleChange, shelf } = props;
-
+console.log(props.shelf, "props.shelf");
 
 
     return (
@@ -52,7 +52,7 @@ function Card(props) {
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
                         <option value="read">Read</option>
-                        <option value="none">None</option>
+                        <option value="none">None</option> 
 
                         {/* {options.map(option => (
                             (option.value == shelf || shelf == null && option.value == 'none') ?

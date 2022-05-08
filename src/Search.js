@@ -21,7 +21,8 @@ function Search() {
       (data.length > 0) ? setQuery(data) : setQuery(all)
     );
   }
-
+console.log(query);
+console.log(all);
 
   function handleChange(event) {
     const id = event.target.id;
@@ -73,7 +74,8 @@ function Search() {
                   title={book.title}
                   author={book.authors}
                   imageLinks={book.imageLinks ? book.imageLinks.thumbnail : 'http://books.google.com/books/content?id=eJa41LzeWWkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'}
-                  shelf={book.shelf}
+                  // get shelf from all if id is found
+                  shelf={all.find((bk) => bk.id === book.id) ? all.find((bk) => bk.id === book.id).shelf : 'none'}
                   handleChange={handleChange}
                 />
                 </li>

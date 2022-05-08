@@ -15,15 +15,15 @@ function Search() {
 
   useEffect(() => {
     getAll().then((data) => setAll(data));
-    if (queryText != "" && queryText != null && queryText != undefined && queryText != "xxx" ) {
+    if (queryText != "") {
       search(queryText).then((data) =>
-        (!data.error) ? setQuery(data) : setQuery([])
-      ); 
-    }
-  }, [ queryText, setQuery ]); // eslint-disable-line 
+        (data.error) ? setQuery([]) : setQuery(data)
+      )
+    } { setQuery([]); }
+  }, [queryText]); // eslint-disable-line 
 
 
-  
+
   function handleChange(event) {
     const id = event.target.id;
     const book = { id: event.target.id, shelf: event.target.value };

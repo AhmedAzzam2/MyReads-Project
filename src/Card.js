@@ -2,12 +2,11 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 Card.propTypes = {
-    author: PropTypes.string.isRequired,
+    author: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
     imageLinks: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     handleChange: PropTypes.func.isRequired,
-    search: PropTypes.bool.isRequired
 
 };
 
@@ -27,6 +26,7 @@ export const options = shelves.map(shelf => {
 );
 
 function Card(props) {
+
     const { author, title, imageLinks, id, handleChange, shelf } = props;
 
 
@@ -44,16 +44,20 @@ function Card(props) {
                     }}
                 ></div>
                 <div className="book-shelf-changer">
-                    <select onChange={handleChange} id={id}  >
+                    <select onChange={handleChange} id={id}  value={ shelf ? shelf: 'none' }>
                         <option value="" disabled>Move to... </option>
+                        <option value="currentlyReading">Currently Reading</option>
+                        <option value="wantToRead">Want to Read</option>
+                        <option value="read">Read</option>
+                        <option value="none">None</option>
 
-                        {options.map(option => (
+                        {/* {options.map(option => (
                             (option.value == shelf || shelf == null && option.value == 'none') ?
-                                <option value={option.value} selected>{option.label}</option>
+                                <option key={option.value} value={option.value} selected>{option.label}</option>
                                 :
-                                <option value={option.value}>{option.label}</option>
+                                <option key={option.value} value={option.value}>{option.label}</option>
 
-                        ))}
+                        ))} */}
 
                     </select>
                 </div>

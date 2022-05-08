@@ -6,10 +6,6 @@ import Card from "./Card";
 import { shelves } from "./Card";
 
 
-shelves.map((shelf) => {
-  console.log(shelf);
-}
-);
 function App() {
   const [all, setAll] = useState([]);
 
@@ -22,9 +18,7 @@ function App() {
     const id = event.target.id;
     const book = { id: event.target.id, shelf: event.target.value };
     const shelf = event.target.value;
-    console.log(book);
-    update(book, shelf).then((data) => {
-      console.log(data.read, data);
+    update(book, shelf).then((data) => { 
 
       // firter by id
       const newAll = all.filter((book) => book.id !== id);

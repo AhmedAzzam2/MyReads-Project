@@ -17,9 +17,12 @@ function Search() {
   }, []);
 
   function handleSearch(event) {
+    if (event.target.value != "") {
     search(event.target.value).then((data) =>
       (data.length > 0) ? setQuery(data) : setQuery(all)
     );
+    } 
+    
   }
 console.log(query);
 console.log(all);

@@ -1,4 +1,3 @@
-import react from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -11,31 +10,30 @@ Card.propTypes = {
     search: PropTypes.bool.isRequired
 
 };
+
+export const shelves = [
+    { id: "currentlyReading", shelfName: "Currently Reading", shelfDisplayName: "Currently Reading" },
+    { id: "wantToRead", shelfName: "Want to Read", shelfDisplayName: "Want to Read" },
+    { id: "read", shelfName: "Read", shelfDisplayName: "Read" },
+    { id: "none", shelfName: "None", shelfDisplayName: "None" }
+];
+
+
+// map over the shelves array and return the following:
+// <option value={shelf.id}>{shelf.shelfDisplayName}</option> for each shelf in the array 
+export const options = shelves.map(shelf => {
+    return { value: shelf.id, label: shelf.shelfDisplayName };
+}
+);
+
 function Card(props) {
-    const { author, title, imageLinks, id, handleChange, search, shelf } = props;
-
-
-    const shelves = [
-        { id: "currentlyReading", shelfName: "Currently Reading", shelfDisplayName: "Currently Reading" },
-        { id: "wantToRead", shelfName: "Want to Read", shelfDisplayName: "Want to Read" },
-        { id: "read", shelfName: "Read", shelfDisplayName: "Read" },
-        { id: "none", shelfName: "None", shelfDisplayName: "None" }
-    ];
-
-    // map over the shelves array and return the following:
-    // <option value={shelf.id}>{shelf.shelfDisplayName}</option> for each shelf in the array 
-    const options = shelves.map(shelf => {
-        return { value: shelf.id, label: shelf.shelfDisplayName };
-    }
-    );
-    // set the initial value of the select to the shelf that the book is currently on
-    console.log(options);
+    const { author, title, imageLinks, id, handleChange, shelf } = props;
 
 
 
     return (
 
-        <li key={id} >
+        <>
             <div className="book-top">
                 <div
                     className="book-cover"
@@ -50,7 +48,7 @@ function Card(props) {
                         <option value="" disabled>Move to... </option>
 
                         {options.map(option => (
-                            (option.value === shelf || shelf == null && option.value == 'none') ?
+                            (option.value == shelf || shelf == null && option.value == 'none') ?
                                 <option value={option.value} selected>{option.label}</option>
                                 :
                                 <option value={option.value}>{option.label}</option>
@@ -64,7 +62,7 @@ function Card(props) {
                 <div className="book-title">{title}</div>
                 <div className="book-authors">{author}</div>
             </Link>
-        </li>
+        </>
     )
 }
 export default Card;

@@ -66,6 +66,7 @@ function Search() {
           <ol className="books-grid">
             {query
               .map((book) => (
+                <li key={book.id}>
                 <Card
                   key={book.id}
                   id={book.id}
@@ -75,6 +76,7 @@ function Search() {
                   shelf={book.shelf}
                   handleChange={handleChange}
                 />
+                </li>
               ))}
           </ol>
         </div>

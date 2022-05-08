@@ -45,17 +45,17 @@ function App() {
       ) : (
         <div className="list-books">
           <div className="list-books-title">
-            
-                   < Link to="/"><h1>MyReads</h1></Link>
-                   < Link to="/">back to home MyReads</Link>
+
+            < Link to="/"><h1>MyReads</h1></Link>
+            < Link to="/">back to home MyReads</Link>
           </div>
           <div className="list-books-content">
             <div>
               <div className="bookshelf">
                 <h2 className="bookshelf-title">
-                    <Link to={'/'} className="close-search"> </Link>
-            { book && (   book.title ) }
-            
+                  <Link to={'/'} className="close-search"> </Link>
+                  {book && (book.title)}
+
                 </h2>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
@@ -72,7 +72,7 @@ function App() {
                         />
                       )}
                     </div>
-            { book && (   book.description ) }
+                    {book && (book.description)}
 
                   </ol>
                 </div>

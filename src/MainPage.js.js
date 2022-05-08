@@ -48,38 +48,38 @@ function App() {
           <div>
             {
               // shelves.map identifies the shelves and maps them to the cards
-              shelves.map((shelf) => {
+              shelves.filter((shelf) => { return shelf.shelfName != "None"; }) // filter out the none shelf
+              .map((shelf) => {
                 return (
-                  
-            <div className="bookshelf" key={shelf.id}> 
-            <h2 className="bookshelf-title"> { shelf.shelfName}</h2>
-            <div className="bookshelf-books">
-              <ol className="books-grid">
-                      {all.map((book) => {
-                        if (book.shelf === shelf.id) {
-                          return (
-                            <li key={book.id}>
-                              <Card
-                                key={book.id}
-                                id={book.id}
-                                title={book.title}
-                                author={book.authors}
-                                imageLinks={book.imageLinks ? book.imageLinks.thumbnail : 'http://books.google.com/books/content?id=eJa41LzeWWkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'}
-                                handleChange={handleChange}
-                                shelf={book.shelf}
-                              />
-                            </li>
-                          );
-                        }
-                      })}
-                    </ol>
+
+                  <div className="bookshelf" key={shelf.shelfName}>
+                    <h2 className="bookshelf-title"> {shelf.shelfName}</h2>
+                    <div className="bookshelf-books">
+                      <ol className="books-grid">
+                        {all.map((book) => {
+                          if (book.shelf === shelf.id) {
+                            return (
+                              <li key={book.id}>
+                                <Card
+                                  id={book.id}
+                                  title={book.title}
+                                  author={book.authors}
+                                  imageLinks={book.imageLinks ? book.imageLinks.thumbnail : 'http://books.google.com/books/content?id=eJa41LzeWWkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'}
+                                  handleChange={handleChange}
+                                  shelf={book.shelf}
+                                />
+                              </li>
+                            );
+                          }
+                        })}
+                      </ol>
                     </div>
                   </div>
                 );
               })
 
             }
-            
+
           </div>
         </div>
         <div className="open-search">

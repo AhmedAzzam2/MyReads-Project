@@ -10,23 +10,20 @@ import Card from "./Card";
 
 function Search() {
   const [query, setQuery] = useState([]);
+  const [queryText, setQueryText] = useState('');
   const [all, setAll] = useState([]);
 
   useEffect(() => {
     getAll().then((data) => setAll(data));
   }, []);
 
-  function handleSearch(event) {
-    if (event.target.value != "") {
-    search(event.target.value).then((data) =>
-      (data.length > 0) ? setQuery(data) : setQuery(all)
-    );
-    } 
-    
+  if (queryText != "") {
+    search(queryText).then((data) =>
+      (!data.error) ? setQuery(data) : setQuery([])
+    ); 
   }
-console.log(query);
-console.log(all);
 
+  
   function handleChange(event) {
     const id = event.target.id;
     const book = { id: event.target.id, shelf: event.target.value };
@@ -60,7 +57,10 @@ console.log(all);
           <Link to="/" className="close-search"> Home </Link>
           <div className="search-books-input-wrapper">
             <input
-              onChange={handleSearch}
+              onChange={(e) => setQueryText(e.target.value)}
+
+              autoFocus
+              // onChange={handleSearch}
               type="text"
               placeholder="Search by title, author, or ISBN"
             />
@@ -71,16 +71,16 @@ console.log(all);
             {query
               .map((book) => (
                 <li key={book.id}>
-                <Card
-                  key={book.id}
-                  id={book.id}
-                  title={book.title}
-                  author={book.authors}
-                  imageLinks={book.imageLinks ? book.imageLinks.thumbnail : 'http://books.google.com/books/content?id=eJa41LzeWWkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'}
-                  // get shelf from all if id is found
-                  shelf={all.find((bk) => bk.id === book.id) ? all.find((bk) => bk.id === book.id).shelf : 'none'}
-                  handleChange={handleChange}
-                />
+                  <Card
+                    key={book.id}
+                    id={book.id}
+                    title={book.title}
+                    author={book.authors}
+                    imageLinks={book.imageLinks ? book.imageLinks.thumbnail : 'http://books.google.com/books/content?id=eJa41LzeWWkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'}
+                    // get shelf from all if id is found
+                    shelf={all.find((bk) => bk.id === book.id) ? all.find((bk) => bk.id === book.id).shelf : 'none'}
+                    handleChange={handleChange}
+                  />
                 </li>
               ))}
           </ol>
